@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 
 
+@SuppressWarnings("serial")
 public class LoginEvent implements Serializable{
 
 	private final String login;
