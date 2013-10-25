@@ -1,5 +1,9 @@
 package nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.ui;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.LogoutEvent;
+
 import com.google.common.eventbus.EventBus;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -9,26 +13,28 @@ import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Label;
 
+@SuppressWarnings("serial")
 public class SimpleLoginMainView extends CustomComponent implements View {
 
     public static final String NAME = "";
 
+    EventBus eventBus = null;
+    
     Label text = new Label();
 
     Button logout = new Button("Logout", new Button.ClickListener() {
 
-        @Override
-        public void buttonClick(ClickEvent event) {
+    	
+    	@Override
+		public void buttonClick(ClickEvent event) {
 
-            // "Logout" the user
-            getSession().setAttribute("user", null);
-
-            // Refresh this view, should redirect to login view
-            getUI().getNavigator().navigateTo(NAME);
-        }
-    });
+			eventBus.post(new LogoutEvent());
+		}
+    	
+     });
 
     public SimpleLoginMainView(EventBus bus) {
+    	eventBus = bus;
         setCompositionRoot(new CssLayout(text, logout));
     }
 
@@ -36,10 +42,9 @@ public class SimpleLoginMainView extends CustomComponent implements View {
 
 	@Override
     public void enter(ViewChangeEvent event) {
-        // Get the user name from the session
-        String username = String.valueOf(getSession().getAttribute("user"));
-
+        // Get the user name from the session      
+        String user = SecurityContextHolder.getContext().getAuthentication().getName();
         // And show the username
-        text.setValue("Hello " + username);
+        text.setValue("Hello " + user);
     }
 }
