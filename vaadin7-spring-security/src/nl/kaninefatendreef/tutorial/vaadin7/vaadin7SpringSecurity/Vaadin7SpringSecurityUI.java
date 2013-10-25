@@ -1,0 +1,79 @@
+package nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity;
+
+
+import javax.servlet.annotation.WebServlet;
+
+import org.springframework.security.authentication.BadCredentialsException;
+
+import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.spring.ViewChangeSecurityChecker;
+import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.ui.SimpleLoginMainView;
+import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.ui.SimpleLoginView;
+
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.navigator.Navigator;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinServlet;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.Notification.Type;
+import com.vaadin.ui.UI;
+
+@SuppressWarnings("serial")
+@Theme("vaadin7springsecurity")
+public class Vaadin7SpringSecurityUI extends UI {
+
+	private EventBus bus = new EventBus();
+	
+	@Subscribe
+	public void login(LoginEvent event) {
+
+		AuthenticationService authHandler = new AuthenticationService();
+
+		try {
+			authHandler.handleAuthentication(event.getLogin(), event.getPassword(), RequestHolder.getRequest());
+			getNavigator().navigateTo(SimpleLoginMainView.NAME);
+		} catch (BadCredentialsException e) {
+			Notification.show("Bad credentials", Type.ERROR_MESSAGE);
+		}
+	}
+
+	@Subscribe
+	public void logout(LogoutEvent event) {
+
+		AuthenticationService authHandler = new AuthenticationService();
+		
+		authHandler.handleLogout(RequestHolder.getRequest());
+
+		 getNavigator().navigateTo(SimpleLoginView.NAME);
+	}
+
+	@Override
+	protected void init(VaadinRequest request) {
+		
+		
+		// Object to switch between views
+		new Navigator(this, this);
+	    
+		//
+	    // The initial log view where the user can login to the application
+	    //
+	    getNavigator().addView(SimpleLoginView.NAME, new SimpleLoginView(bus));
+
+	    //
+	    // Add the main view of the application
+	    //
+	    getNavigator().addView(SimpleLoginMainView.NAME,new SimpleLoginMainView(bus));
+			        
+	    getNavigator().addViewChangeListener(new ViewChangeSecurityChecker());
+	
+	    // Start view
+		getNavigator().navigateTo(SimpleLoginView.NAME);
+  
+		// Register subscribe annotations
+		bus.register(this);
+
+	}
+
+}
