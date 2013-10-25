@@ -1,4 +1,4 @@
-package nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity;
+package nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.spring;
 
 
 
