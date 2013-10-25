@@ -1,0 +1,9 @@
+@import "addons.scss";
+@import "vaadin7springsecurity.scss";
+
+/* This file prefixes all rules with the theme name to avoid causing conflicts with other themes. */
+/* The actual styles should be defined in vaadin7springsecurity.scss */
+.vaadin7springsecurity {
+  @include addons;
+  @include vaadin7springsecurity;
+}
