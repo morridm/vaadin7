@@ -2,7 +2,7 @@ package nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.ui;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.LogoutEvent;
+import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.event.LogoutEvent;
 
 import com.google.common.eventbus.EventBus;
 import com.vaadin.navigator.View;

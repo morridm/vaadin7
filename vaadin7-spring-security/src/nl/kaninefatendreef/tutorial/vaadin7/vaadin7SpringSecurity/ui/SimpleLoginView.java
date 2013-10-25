@@ -1,6 +1,6 @@
 package nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.ui;
 
-import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.LoginEvent;
+import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.event.LoginEvent;
 
 import com.vaadin.data.validator.AbstractValidator;
 import com.vaadin.data.validator.EmailValidator;

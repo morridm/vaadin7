@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.spring.RequestHolder;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.vaadin.annotations.VaadinServletConfiguration;

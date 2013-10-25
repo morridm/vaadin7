@@ -5,6 +5,10 @@ import javax.servlet.annotation.WebServlet;
 
 import org.springframework.security.authentication.BadCredentialsException;
 
+import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.event.LoginEvent;
+import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.event.LogoutEvent;
+import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.spring.AuthenticationService;
+import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.spring.RequestHolder;
 import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.spring.ViewChangeSecurityChecker;
 import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.ui.SimpleLoginMainView;
 import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.ui.SimpleLoginView;
