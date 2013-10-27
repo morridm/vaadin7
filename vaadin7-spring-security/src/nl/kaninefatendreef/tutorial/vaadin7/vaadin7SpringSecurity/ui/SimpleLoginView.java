@@ -27,41 +27,41 @@ implements View,
 
     public static final String NAME = "login";
 
-    private final TextField user;
+    private final TextField _user;
 
-    private final PasswordField password;
+    private final PasswordField _password;
 
-    private final Button loginButton;
+    private final Button _loginButton;
  
-    private EventBus bus ;
+    private EventBus _eventBus ;
    
     
     
     public SimpleLoginView(EventBus bus) {
-    	this.bus = bus;
+    	_eventBus = bus;
     	  setSizeFull();
 
           // Create the user input field
-          user = new TextField("User:");
-          user.setWidth("300px");
-          user.setRequired(true);
-          user.setInputPrompt("Your username (eg. joe@email.com)");
-          user.addValidator(new EmailValidator("Username must be an email address"));
-          user.setInvalidAllowed(true);
+          _user = new TextField("User:");
+          _user.setWidth("300px");
+          _user.setRequired(true);
+          _user.setInputPrompt("Your username (eg. joe@email.com)");
+          _user.addValidator(new EmailValidator("Username must be an email address"));
+          _user.setInvalidAllowed(true);
 
           // Create the password input field
-          password = new PasswordField("Password:");
-          password.setWidth("300px");
-          password.addValidator(new PasswordValidator());
-          password.setRequired(true);
-          password.setValue("");
-          password.setNullRepresentation("");
+          _password = new PasswordField("Password:");
+          _password.setWidth("300px");
+          _password.addValidator(new PasswordValidator());
+          _password.setRequired(true);
+          _password.setValue("");
+          _password.setNullRepresentation("");
 
           // Create login button
-          loginButton = new Button("Login", this);
+          _loginButton = new Button("Login", this);
 
           // Add both to a panel
-          VerticalLayout fields = new VerticalLayout(user, password, loginButton);
+          VerticalLayout fields = new VerticalLayout(_user, _password, _loginButton);
           fields.setCaption("Please login to access the application. (test@test.com/passw0rd)");
           fields.setSpacing(true);
           fields.setMargin(new MarginInfo(true, true, true, false));
@@ -79,7 +79,7 @@ implements View,
 	@Override
     public void enter(ViewChangeEvent event) {
         // focus the username field when user arrives to the login view
-        user.focus();
+        _user.focus();
     }
 
     //
@@ -114,21 +114,13 @@ implements View,
     @Override
     public void buttonClick(ClickEvent event) {
 
-    	
-    	LoginEvent loginEvent = new LoginEvent(user.getValue(), password.getValue());
+    	LoginEvent loginEvent = new LoginEvent(_user.getValue(), _password.getValue());
 
-		bus.post(loginEvent);
+		_eventBus.post(loginEvent);
 		
-		user.setValue("");
-		password.setValue("");
+		_user.setValue("");
+		_password.setValue("");
     	
-    	
-//			LoginEvent loginEvent = new LoginEvent(user.getValue(), password.getValue());
-//			bus.post(loginEvent);
-			
-			user.setValue("");
-			password.setValue("");
-	
 			
 	   }
 }

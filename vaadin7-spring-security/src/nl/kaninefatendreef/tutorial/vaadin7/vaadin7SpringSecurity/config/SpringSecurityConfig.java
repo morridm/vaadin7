@@ -35,7 +35,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
               ;
      }
 
-	 @Bean 
+	@Bean 
 	@Override 
 	public AuthenticationManager authenticationManagerBean() 
 	            throws Exception { 

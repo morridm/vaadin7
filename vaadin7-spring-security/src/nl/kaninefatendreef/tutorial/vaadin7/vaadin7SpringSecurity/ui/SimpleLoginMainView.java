@@ -18,24 +18,22 @@ public class SimpleLoginMainView extends CustomComponent implements View {
 
     public static final String NAME = "";
 
-    EventBus eventBus = null;
-    
-    Label text = new Label();
+    EventBus _eventBus = null; 
+    Label _text = new Label();
 
-    Button logout = new Button("Logout", new Button.ClickListener() {
-
+    Button _logout = new Button("Logout", new Button.ClickListener() {
     	
     	@Override
 		public void buttonClick(ClickEvent event) {
 
-			eventBus.post(new LogoutEvent());
+			_eventBus.post(new LogoutEvent());
 		}
     	
      });
 
     public SimpleLoginMainView(EventBus bus) {
-    	eventBus = bus;
-        setCompositionRoot(new CssLayout(text, logout));
+    	_eventBus = bus;
+        setCompositionRoot(new CssLayout(_text, _logout));
     }
 
    
@@ -45,6 +43,6 @@ public class SimpleLoginMainView extends CustomComponent implements View {
         // Get the user name from the session      
         String user = SecurityContextHolder.getContext().getAuthentication().getName();
         // And show the username
-        text.setValue("Hello " + user);
+        _text.setValue("Hello " + user);
     }
 }

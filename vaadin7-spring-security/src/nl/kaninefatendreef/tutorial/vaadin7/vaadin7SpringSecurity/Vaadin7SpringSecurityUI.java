@@ -1,10 +1,6 @@
 package nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity;
 
 
-import javax.servlet.annotation.WebServlet;
-
-import org.springframework.security.authentication.BadCredentialsException;
-
 import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.event.LoginEvent;
 import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.event.LogoutEvent;
 import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.spring.AuthenticationService;
@@ -13,13 +9,13 @@ import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.spring.ViewCha
 import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.ui.SimpleLoginMainView;
 import nl.kaninefatendreef.tutorial.vaadin7.vaadin7SpringSecurity.ui.SimpleLoginView;
 
+import org.springframework.security.authentication.BadCredentialsException;
+
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.vaadin.annotations.Theme;
-import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.UI;
