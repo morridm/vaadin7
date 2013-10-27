@@ -24,7 +24,9 @@ import com.vaadin.ui.UI;
 @Theme("vaadin7springsecurity")
 public class Vaadin7SpringSecurityUI extends UI {
 
-	private EventBus bus = new EventBus();
+	private EventBus _eventBus = new EventBus();
+	
+	// Subscribe annotations are processed by the event bus when called register this
 	
 	@Subscribe
 	public void login(LoginEvent event) {
@@ -59,12 +61,12 @@ public class Vaadin7SpringSecurityUI extends UI {
 		//
 	    // The initial log view where the user can login to the application
 	    //
-	    getNavigator().addView(SimpleLoginView.NAME, new SimpleLoginView(bus));
+	    getNavigator().addView(SimpleLoginView.NAME, new SimpleLoginView(_eventBus));
 
 	    //
 	    // Add the main view of the application
 	    //
-	    getNavigator().addView(SimpleLoginMainView.NAME,new SimpleLoginMainView(bus));
+	    getNavigator().addView(SimpleLoginMainView.NAME,new SimpleLoginMainView(_eventBus));
 			        
 	    getNavigator().addViewChangeListener(new ViewChangeSecurityChecker());
 	
@@ -72,7 +74,7 @@ public class Vaadin7SpringSecurityUI extends UI {
 		getNavigator().navigateTo(SimpleLoginView.NAME);
   
 		// Register subscribe annotations
-		bus.register(this);
+		_eventBus.register(this);
 
 	}
 
