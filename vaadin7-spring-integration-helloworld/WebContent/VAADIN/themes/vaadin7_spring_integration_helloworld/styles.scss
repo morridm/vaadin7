@@ -1,0 +1,9 @@
+@import "addons.scss";
+@import "vaadin7_spring_integration_helloworld.scss";
+
+/* This file prefixes all rules with the theme name to avoid causing conflicts with other themes. */
+/* The actual styles should be defined in vaadin7_spring_integration_helloworld.scss */
+.vaadin7_spring_integration_helloworld {
+  @include addons;
+  @include vaadin7_spring_integration_helloworld;
+}
