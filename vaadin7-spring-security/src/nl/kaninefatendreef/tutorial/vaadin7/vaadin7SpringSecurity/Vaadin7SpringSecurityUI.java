@@ -48,6 +48,8 @@ public class Vaadin7SpringSecurityUI extends UI {
 		
 		authHandler.handleLogout(RequestHolder.getRequest());
 
+		///j_spring_security_logout
+		
 		 getNavigator().navigateTo(SimpleLoginView.NAME);
 	}
 
