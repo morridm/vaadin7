@@ -1,8 +1,6 @@
 package nl.kaninefatendreef.tutorial.vaadin7.vaadin7XpoftXpringSecurity;
 
 
-
-
 import nl.kaninefatendreef.tutorial.vaadin7.vaadin7XpoftXpringSecurity.event.LoginEvent;
 import nl.kaninefatendreef.tutorial.vaadin7.vaadin7XpoftXpringSecurity.event.LogoutEvent;
 import nl.kaninefatendreef.tutorial.vaadin7.vaadin7XpoftXpringSecurity.view.SimpleLoginMainView;
@@ -79,6 +77,8 @@ public class Vaadin7XpoftSpringSecurityUI extends UI implements ErrorHandler{
 		getNavigator().addView(SimpleLoginMainView.NAME,
 				new SimpleLoginMainView(_eventBus));
 
+		getNavigator().addViewChangeListener(new ViewChangeSecurityChecker());
+		
 		getNavigator().navigateTo(SimpleLoginView.NAME);
 
 		// Register subscribe annotations

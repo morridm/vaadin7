@@ -45,5 +45,6 @@ public class AuthenticationService {
 		
 		// Response should not be used?
 		logoutHandler.logout(httpRequest, null, authentication);
+		
 	}
 }
